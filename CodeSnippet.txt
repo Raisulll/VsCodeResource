@@ -12,7 +12,6 @@
         "#include \"E:\\Codes\\debug.h\"",
         "#else ",
         "#define debug(x...)",
-        "#define debug(x...)",
         "#endif",
         "",
 		"using namespace std;",
