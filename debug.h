@@ -1,11 +1,4 @@
 #include <bits/stdc++.h>
-#ifndef ONLINE_JUDGE
-#include "E:\Codes\debug.h"
-#else
-#define debug(x...)
-#define debug(x...)
-#endif
-
 using namespace std;
 #define ll long long
 #define ld long double
