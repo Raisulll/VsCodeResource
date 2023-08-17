@@ -1,71 +1,143 @@
+#ifndef DEBUG_INCLUDED
+#define DEBUG_INCLUDED
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define ld long double
-#define pll pair<ll, ll>
 #define nl "\n"
-#define printa(a, L, R)         \
-    for (int i = L; i < R; i++) \
-    cout << a[i] << (i == R - 1 ? '\n' : ' ')
 #define pb push_back
 #define UB upper_bound
 #define LB lower_bound
 #define F first
 #define S second
-#define mem(a, x) memset(a, x, sizeof(a))
-ll cs;
-#define _case cout << "Case " << ++cs << ": "
-#define rev(v) reverse(v.begin(), v.end())
-#define vf(v) (v).begin(), (v).end()
-#define vr(v) (v).rbegin(), (v).rend()
-#define mnv(v) *min_element(v.begin(), v.end())
-#define mxv(v) *max_element(v.begin(), v.end())
 
-void __print(ll x) {cerr << x;}
-void __print(long x) {cerr << x;}
-void __print(unsigned x) {cerr << x;}
-void __print(unsigned long x) {cerr << x;}
-void __print(unsigned long long x) {cerr << x;}
-void __print(float x) {cerr << x;}
-void __print(double x) {cerr << x;}
-void __print(char x) {cerr << '\'' << x << '\'';}
-void __print(const char *x) {cerr << '\"' << x << '\"';}
-void __print(const string &x) {cerr << '\"' << x << '\"';}
-void __print(bool x) {cerr << (x ? "true" : "false");}
+template <typename A, typename B>
+string to_string(pair<A, B> p);
 
-template<typename T, typename V>
-void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
-template<typename T>
-void __print(const T &x) {ll f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
-void _print() {cerr << "";}
-template <typename T, typename... V>
-void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+template <typename A, typename B, typename C>
+string to_string(tuple<A, B, C> p);
 
+template <typename A, typename B, typename C, typename D>
+string to_string(tuple<A, B, C, D> p);
 
+string to_string(const string &s)
+{
+    return '"' + s + '"';
+}
 
-// ager debug suru..........
+string to_string(const char *s)
+{
+    return to_string((string)s);
+}
 
-// #define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+string to_string(const char c)
+{
+    return string(1, c);
+}
 
-void _print(ll t) {cerr << t;}
-void _print(char t) {cerr << t;}
-void _print(float t) {cerr << t;}
-void _print(string t) {cerr << t;}
+string to_string(bool b)
+{
+    return (b ? "true" : "false");
+}
 
-template <class T, class V> void _print(pair <T, V> p);
-template <class T> void _print(vector <T> v);
-template <class T> void _print(set <T> v);
-template <class T, class V> void _print(map <T, V> v);
-template <class T> void _print(multiset <T> v);
-template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.first); cerr << ","; _print(p.second); cerr << "}";}
-template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << " ]";}
-template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << " ]";}
-template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << " ]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << " ]";}
+/*
+   string to_string(__cxx1998::_Bit_reference b) { // without this vector<bool> fails
+   return (b ? "true" : "false");
+   }
+ */
 
+string to_string(vector<bool> v)
+{
+    bool first = true;
+    string res = "{";
+    for (ll i = 0; i < static_cast<ll>(v.size()); i++)
+    {
+        if (!first)
+        {
+            res += ", ";
+        }
+        first = false;
+        res += to_string(v[i]);
+    }
+    res += "}";
+    return res;
+}
 
-#define debug(x...) cerr << "[ " << #x << " ] = [ "; _print(x)  ; cerr << " ]" << endl;
-// #define debug(x...) cerr << "[ " << #x << " ] = [ "; _print(x);
+template <size_t N>
+string to_string(bitset<N> v)
+{
+    string res = "";
+    for (size_t i = 0; i < N; i++)
+    {
+        res += static_cast<char>('0' + v[i]);
+    }
+    return res;
+}
 
+template <typename A>
+string to_string(A v)
+{
+    bool first = true;
+    string res = "{";
+    for (const auto &x : v)
+    {
+        if (!first)
+        {
+            res += ", ";
+        }
+        first = false;
+        res += to_string(x);
+    }
+    res += "}";
+    return res;
+}
 
+template <typename A, typename B>
+string to_string(pair<A, B> p)
+{
+    return "(" + to_string(p.first) + ", " + to_string(p.second) + ")";
+}
 
+template <typename A, typename B, typename C>
+string to_string(tuple<A, B, C> p)
+{
+    return "(" + to_string(get<0>(p)) + ", " + to_string(get<1>(p)) + ", " + to_string(get<2>(p)) + ")";
+}
+
+template <typename A, typename B, typename C, typename D>
+string to_string(tuple<A, B, C, D> p)
+{
+    return "(" + to_string(get<0>(p)) + ", " + to_string(get<1>(p)) + ", " + to_string(get<2>(p)) + ", " + to_string(get<3>(p)) + ")";
+}
+
+void debug_out() { cerr << endl; }
+
+template <typename Head, typename... Tail>
+void debug_out(Head H, Tail... T)
+{
+    cerr << " " << to_string(H);
+    debug_out(T...);
+}
+
+#define CONCAT_(x, y) x##y
+#define CONCAT(x, y) CONCAT_(x, y)
+#define clog cerr << setw(__db_level * 2) << setfill(' ') << "" << setw(0)
+#define DB() debug_block CONCAT(dbbl, __LINE__)
+ll __db_level = 0;
+struct debug_block
+{
+    debug_block()
+    {
+        clog << "{" << endl;
+        ++__db_level;
+    }
+    ~debug_block()
+    {
+        --__db_level;
+        clog << "}" << endl;
+    }
+};
+#define debug(...) clog << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__)
+
+#endif
