@@ -9,7 +9,7 @@
 		"body": [
 		"#include <bits/stdc++.h>",
 		"#ifndef ONLINE_JUDGE",
-        "#include \"E:\\Codes\\debug.h\"",
+        "#include \"debug.h\"",
         "#else ",
         "#define debug(x...)",
         "#endif",
