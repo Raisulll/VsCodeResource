@@ -133,5 +133,21 @@
 		"}",
 		],
 		"description": "bfs code"
+	},
+	"power":{
+		"prefix": "power",
+		"body":[
+		"ll binpow(ll a, ll b) {",
+		"\tll res = 1;"
+		"\twhile (b > 0) {"
+		"\t\tif (b & 1)",
+		"\t\t\tres = res * a;"
+		"\t\ta = a * a;"
+		"\t\tb >>= 1;"
+		"\t}"
+		"\treturn res;"
+		"}"
+		],
+		"description": "power Func"
 	}
 }
