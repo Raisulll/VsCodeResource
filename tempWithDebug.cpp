@@ -143,7 +143,7 @@ float pi = acos(-1);
 // ll dy[]={0,1,0,-1,1,1,-1,-1};
 void solve()
 {
-    cout << fixed << setprecision(30) << pi << nl;
+    
 }
 int main()
 {
